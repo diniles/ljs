@@ -2,8 +2,6 @@
 
 #### https://learn.javascript.ru/function-basics
 
-Конструкция switch заменяет собой сразу несколько if.
-
 ### Итого
 
     function имя(параметры, через, запятую) {
