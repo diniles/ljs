@@ -1,6 +1,6 @@
 # Преобразование типов
 
-#### https://learn.javascript.ru/type-conversions
+#### [Преобразование типов](https://learn.javascript.ru/type-conversions)
 
 ### Существует 3 наиболее широко используемых преобразования: строковое, численное и логическое.
 

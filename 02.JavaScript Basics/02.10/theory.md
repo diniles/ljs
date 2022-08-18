@@ -1,6 +1,6 @@
 # Условное ветвление: if, '?'
 
-#### https://learn.javascript.ru/ifelse
+#### [Условное ветвление: if, '?'](https://learn.javascript.ru/ifelse)
 
 ### Инструкция «if»
 

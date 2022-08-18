@@ -1,6 +1,6 @@
 # Операторы сравнения
 
-#### https://learn.javascript.ru/comparison
+#### [Операторы сравнения](https://learn.javascript.ru/comparison)
 
 ### Сравнение строк
 

@@ -1,6 +1,6 @@
 # Сборка мусора
 
-#### https://learn.javascript.ru/garbage-collection
+#### [Сборка мусора](https://learn.javascript.ru/garbage-collection)
 
 Главное, что нужно знать:
 

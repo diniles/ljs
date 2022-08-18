@@ -1,11 +1,13 @@
 # Взаимодействие: alert, prompt, confirm
 
-#### https://learn.javascript.ru/alert-prompt-confirm
+#### [Взаимодействие: alert, prompt, confirm](https://learn.javascript.ru/alert-prompt-confirm)
 
 ### alert
+
     alert("Hello");
 
 ### prompt
+
 Функция prompt принимает два аргумента:
 
     result = prompt(title, [default]);

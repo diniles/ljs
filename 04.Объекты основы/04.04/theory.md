@@ -1,6 +1,6 @@
 # Копирование объектов и ссылки
 
-#### https://learn.javascript.ru/object-methods
+#### [Копирование объектов и ссылки](https://learn.javascript.ru/object-methods)
 
 ### Сокращённая запись метода
 

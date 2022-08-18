@@ -1,6 +1,6 @@
 # Логические операторы
 
-#### https://learn.javascript.ru/logical-operators
+#### [Логические операторы](https://learn.javascript.ru/logical-operators)
 
 ### || (ИЛИ)
 

@@ -1,6 +1,6 @@
 # Объекты
 
-#### https://learn.javascript.ru/object
+#### [Объекты](https://learn.javascript.ru/object)
 
     let user = new Object(); // синтаксис "конструктор объекта"
     let user = {};  // синтаксис "литерал объекта"

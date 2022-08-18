@@ -1,6 +1,6 @@
 # Функции
 
-#### https://learn.javascript.ru/function-basics
+#### [Функции](https://learn.javascript.ru/function-basics)
 
 ### Итого
 

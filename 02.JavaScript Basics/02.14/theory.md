@@ -1,6 +1,6 @@
 # Конструкция "switch"
 
-#### https://learn.javascript.ru/switch
+#### [Конструкция "switch"](https://learn.javascript.ru/switch)
 
 Конструкция switch заменяет собой сразу несколько if.
 

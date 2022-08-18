@@ -1,6 +1,6 @@
 # Стрелочные функции, основы
 
-#### https://learn.javascript.ru/arrow-functions-basics
+#### [Стрелочные функции, основы](https://learn.javascript.ru/arrow-functions-basics)
 
 `let func = (arg1, arg2, ...argN) => expression;`
 

@@ -1,6 +1,6 @@
 # Оператор нулевого слияния (??)
 
-#### https://learn.javascript.ru/nullish-coalescing-operator
+#### [Оператор нулевого слияния (??)](https://learn.javascript.ru/nullish-coalescing-operator)
 
 **Новая возможность**
 
