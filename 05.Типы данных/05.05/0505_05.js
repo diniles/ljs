@@ -10,3 +10,13 @@
 //
 // alert( sorted ); // CSS, HTML, JavaScript
 // alert( arr ); // HTML, JavaScript, CSS (без изменений)
+
+function copySorted(arr) {
+  const arrCopy = arr.slice();
+  return arrCopy.sort();
+}
+
+let arr = ["HTML", "JavaScript", "CSS"];
+let sorted = copySorted(arr);
+console.log(sorted);
+console.log(arr);
