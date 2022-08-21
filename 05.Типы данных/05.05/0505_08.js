@@ -27,3 +27,17 @@
 // alert( usersMapped[0].fullName ) // Вася Пупкин
 // Итак, на самом деле вам нужно трансформировать один массив объектов в другой. Попробуйте использовать =>.
 // Это небольшая уловка.
+
+let vasya = {name: "Вася", surname: "Пупкин", id: 1};
+let petya = {name: "Петя", surname: "Иванов", id: 2};
+let masha = {name: "Маша", surname: "Петрова", id: 3};
+
+let users = [vasya, petya, masha];
+
+let usersMapped = users.map(user => ({
+  fullName: `${user.name} ${user.surname}`,
+  id: user.id
+}));
+
+console.log(usersMapped[0].id);
+console.log(usersMapped[0].fullName);
