@@ -3,7 +3,6 @@
 #### [Формат JSON, метод toJSON](https://learn.javascript.ru/json)
 
 JavaScript предоставляет методы:
-
 - JSON.stringify для преобразования объектов в JSON.
 - JSON.parse для преобразования JSON обратно в объект.
 
