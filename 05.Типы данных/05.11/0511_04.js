@@ -13,3 +13,15 @@
 // alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
 // alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
 // P.S. Функция не должна изменять переданный ей объект date.
+
+function getDateAgo(date, days) {
+  let newDate = new Date(date - days * 24 * 60 * 60 * 1000);
+  // return `${newDate.getDate()} ${newDate.getMonth()} ${newDate.getFullYear()}`;
+  return newDate.toLocaleDateString('en-GB', {year: 'numeric', month: 'short', day: 'numeric'});
+}
+
+let date = new Date(2015, 0, 2)
+;
+console.log((getDateAgo(date, 1)));
+console.log((getDateAgo(date, 2)));
+console.log((getDateAgo(date, 365)));
