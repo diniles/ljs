@@ -20,8 +20,7 @@ function getDateAgo(date, days) {
   return newDate.toLocaleDateString('en-GB', {year: 'numeric', month: 'short', day: 'numeric'});
 }
 
-let date = new Date(2015, 0, 2)
-;
+let date = new Date(2015, 0, 2);
 console.log((getDateAgo(date, 1)));
 console.log((getDateAgo(date, 2)));
 console.log((getDateAgo(date, 365)));
