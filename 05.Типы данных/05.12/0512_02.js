@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 // Исключить обратные ссылки
 // В простых случаях циклических ссылок мы можем исключить свойство, из-за
 // которого они возникают, из сериализации по его имени.
@@ -13,21 +13,21 @@
 // let room = {
 //     number: 23
 //   };
-  
+
 //   let meetup = {
 //     title: "Совещание",
 //     occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
 //     place: room
 //   };
-  
+
 //   // цикличные ссылки
 //   room.occupiedBy = meetup;
 //   meetup.self = meetup;
-  
+
 //   alert( JSON.stringify(meetup, function replacer(key, value) {
 //     /* ваш код */
 //   }));
-  
+
 //   /* в результате должно быть:
 //   {
 //     "title":"Совещание",
@@ -35,3 +35,21 @@
 //     "place":{"number":23}
 //   }
 //   */
+
+let room = {
+  number: 23
+};
+
+let meetup = {
+  title: "Совещание",
+  occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+  place: room
+};
+
+// цикличные ссылки
+room.occupiedBy = meetup;
+meetup.self = meetup;
+
+console.log((JSON.stringify(meetup, function replacer(key, value) {
+  return (key != "" && value == meetup) ? undefined : value;
+})));
