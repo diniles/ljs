@@ -18,3 +18,17 @@
 // alert(fib(77)); // 5527939700884757
 // P.S. Все запуски функций из примера выше должны работать быстро. Вызов fib(77) должен занимать не более доли
 // секунды.
+
+function fib(n) {
+  let prev = 0, next = 1;
+  for (let i = 0; i < n; i++) {
+    let temp = next;
+    next = prev + next;
+    prev = temp;
+  }
+  return prev;
+}
+
+console.log((fib(3))); // 2
+console.log((fib(7))); // 13
+console.log((fib(77))); // 5527939700884757
