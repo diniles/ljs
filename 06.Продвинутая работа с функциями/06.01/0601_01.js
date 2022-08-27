@@ -23,3 +23,24 @@
 // P.S. Какой вариант решения самый быстрый? Самый медленный? Почему?
 //
 // P.P.S. Можно ли при помощи рекурсии посчитать sumTo(100000)?
+
+function sumToCycle(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+function sumToRecursion(n) {
+  return (n == 1) ? 1 : n + sumToRecursion(n - 1);
+}
+
+function sumToArrProgression(n) {
+  return n * (n + 1) / 2;
+}
+
+
+console.log(sumToCycle(100));
+console.log(sumToRecursion(100));
+console.log(sumToArrProgression(100));
