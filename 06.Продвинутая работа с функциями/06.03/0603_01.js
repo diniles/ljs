@@ -8,3 +8,15 @@
 //
 // sum(1)(2) = 3
 // sum(5)(-1) = 4
+
+function sum(a) {
+  let sum = a;
+
+  return function f(b) {
+    return sum += b;
+  };
+
+}
+
+console.log(sum(1)(2)); //= 3;
+console.log(sum(5)(-1)); //= 4;
