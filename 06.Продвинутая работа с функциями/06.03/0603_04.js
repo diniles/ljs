@@ -29,12 +29,11 @@
 function makeArmy() {
   let shooters = [];
   let i = 0;
-  while (i < 10) {
+  for (let i = 0; i < 10; i++) {
     let shooter = function () { // функция shooter
       console.log(i); // должна выводить порядковый номер
     };
     shooters.push(shooter);
-    i++;
   }
   return shooters;
 }
