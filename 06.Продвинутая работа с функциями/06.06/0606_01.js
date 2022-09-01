@@ -12,18 +12,21 @@
 // так и свойством функции. Или сделать два варианта решения: и так, и так.
 
 function makeCounter() {
-  // вместо
-  // let count = 0
+  let count = 0;
 
   function counter() {
-    return counter.count++;
-  };
+    return count++;
+  }
 
-  counter.count = 0;
+  counter.set = value => count = value;
+
+  counter.decrease = () => count--;
 
   return counter;
 }
 
 let counter = makeCounter();
-alert(counter()); // 0
-alert(counter()); // 1
+console.log(counter.set(2)); // 0
+console.log(counter());
+console.log(counter.decrease()); // 1
+console.log(counter());
