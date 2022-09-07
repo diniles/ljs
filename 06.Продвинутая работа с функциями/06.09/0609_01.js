@@ -21,3 +21,28 @@
 // }
 // P.S.: Этот декоратор иногда полезен для юнит-тестирования. Его расширенная форма – sinon.spy – содержится в
 // библиотеке Sinon.JS.
+
+function work(a, b) {
+  return a + b;
+}
+
+function spy(func) {
+  function wrapper(...args) {
+    // мы используем ...args вместо arguments для хранения "реального" массива в wrapper.calls
+    wrapper.calls.push(args);
+    return func.apply(this, args);
+  }
+
+  wrapper.calls = [];
+
+  return wrapper;
+}
+
+work = spy(work);
+
+console.log(work(1, 2)); // 3
+console.log(work(4, 5)); // 9
+
+for (let args of work.calls) {
+  console.log('call:' + args.join()); // "call:1,2", "call:4,5"
+}
