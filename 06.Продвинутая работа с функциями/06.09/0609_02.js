@@ -16,3 +16,15 @@
 //
 // В приведённом выше коде f – функция с одним аргументом, но ваше решение должно передавать все аргументы и
 // контекст this.
+
+function delay(f, ms) {
+
+  return function () {
+    setTimeout(() => f.apply(this, arguments), ms);
+  };
+
+}
+
+let f1000 = delay(console.log, 1000);
+
+f1000("test");
