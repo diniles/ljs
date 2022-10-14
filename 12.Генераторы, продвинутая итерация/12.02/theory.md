@@ -173,3 +173,16 @@
 
       result = await generator.next(); // result = {value: ..., done: true/false}
 
+### Асинхронно перебираемые объекты
+
+Как мы уже знаем, чтобы сделать объект перебираемым, нужно добавить к нему `Symbol.iterator`.
+
+      let range = {
+         from: 1,
+         to: 5,
+         [Symbol.iterator]() {
+         return <объект с next, чтобы сделать range перебираемым>
+         }
+      }
+
+Обычная практика для `Symbol.iterator` – возвращать генератор, а не простой объект с `next`, как в предыдущем примере.
