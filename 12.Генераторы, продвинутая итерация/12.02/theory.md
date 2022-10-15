@@ -186,3 +186,64 @@
       }
 
 Обычная практика для `Symbol.iterator` – возвращать генератор, а не простой объект с `next`, как в предыдущем примере.
+
+### Асинхронно перебираемые объекты
+
+Как мы уже знаем, чтобы сделать объект перебираемым, нужно добавить к нему `Symbol.iterator`.
+
+      let range = {
+         from: 1,
+         to: 5,
+         [Symbol.iterator]() {
+         return <объект с next, чтобы сделать range перебираемым>
+         }
+      }
+
+Обычная практика для `Symbol.iterator` – возвращать генератор, а не простой объект с `next`, как в предыдущем примере.
+
+Давайте вспомним пример из главы [Генераторы](https://learn.javascript.ru/generators):
+
+      let range = {
+         from: 1,
+         to: 5,
+         
+         *[Symbol.iterator]() { // сокращение для [Symbol.iterator]: function*()
+         for(let value = this.from; value <= this.to; value++) {
+            yield value;
+            }
+         }
+      };
+      
+      for(let value of range) {
+      alert(value); // 1, потом 2, потом 3, потом 4, потом 5
+      }
+
+Здесь созданный объект range является перебираемым, а генератор` *[Symbol.iterator]` реализует логику для перечисления
+значений.
+
+Если хотим добавить асинхронные действия в генератор, нужно заменить `Symbol.iterator` на
+асинхронный `Symbol.asyncIterator`:
+
+      let range = {
+         from: 1,
+         to: 5,
+         
+         async *[Symbol.asyncIterator]() { // то же, что и [Symbol.asyncIterator]: async function*()
+         for(let value = this.from; value <= this.to; value++) {
+         
+            // пауза между значениями, ожидание
+            await new Promise(resolve => setTimeout(resolve, 1000));
+      
+            yield value;
+             }
+            }
+         };
+         
+         (async () => {
+         
+         for await (let value of range) {
+            alert(value); // 1, потом 2, потом 3, потом 4, потом 5
+         }
+      
+      })();
+
