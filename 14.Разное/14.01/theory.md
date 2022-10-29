@@ -205,3 +205,78 @@ JavaScript налагает некоторые условия – инвариа
 Для `set` реализация ловушки должна возвращать `true` в случае успешной записи свойства.
 
 Если забыть это сделать или возвратить любое ложное значение, это приведёт к ошибке `TypeError`.
+
+### Перебор при помощи «ownKeys» и «getOwnPropertyDescriptor»
+
+Object.keys, цикл for..in и большинство других методов, которые работают со списком свойств объекта, используют внутренний метод [[OwnPropertyKeys]] (перехватываемый ловушкой `ownKeys`) для их получения.
+
+Такие методы различаются в деталях:
+
+- `Object.getOwnPropertyNames(obj)` возвращает не-символьные ключи.
+- `Object.getOwnPropertySymbols(obj)` возвращает символьные ключи.
+- `Object.keys/values()` возвращает не-символьные ключи/значения с флагом - `enumerable` (подробнее про флаги свойств было в главе [Флаги и дескрипторы свойств](https://learn.javascript.ru/property-descriptors)).
+- `for..in` перебирает не-символьные ключи с флагом enumerable, а также ключи прототипов.
+
+…Но все они начинают с этого списка.
+
+В примере ниже мы используем ловушку `ownKeys`, чтобы цикл `for..in` по объекту, равно как `Object.keys` и `Object.values` пропускали свойства, начинающиеся с подчёркивания `_`:
+
+    let user = {
+      name: "Вася",
+      age: 30,
+      _password: "***"
+    };
+
+    user = new Proxy(user, {
+      ownKeys(target) {
+        return Object.keys(target).filter(key => !key.startsWith('_'));
+      }
+    });
+
+    // ownKeys исключил _password
+    for(let key in user) alert(key); // name, затем: age
+
+    // аналогичный эффект для этих методов:
+    alert( Object.keys(user) ); // name,age
+    alert( Object.values(user) ); // Вася,30
+
+Впрочем, если мы попробуем возвратить ключ, которого в объекте на самом деле нет, то `Object.keys` его не выдаст:
+
+    let user = { };
+
+    user = new Proxy(user, {
+      ownKeys(target) {
+        return ['a', 'b', 'c'];
+      }
+    });
+
+    alert( Object.keys(user) ); // <пусто>
+
+Почему? Причина проста: `Object.keys` возвращает только свойства с флагом enumerable. Для того, чтобы определить, есть ли этот флаг, он для каждого свойства вызывает внутренний метод `[[GetOwnProperty]]`, который получает его дескриптор. А в данном случае свойство отсутствует, его [дескриптор](https://learn.javascript.ru/property-descriptors) пуст, флага `enumerable` нет, поэтому оно пропускается.
+
+Чтобы `Object.keys` возвращал свойство, нужно либо чтобы свойство в объекте физически было, причём с флагом `enumerable`, либо перехватить вызовы `[[GetOwnProperty]]` (это делает ловушка `getOwnPropertyDescriptor`), и там вернуть дескриптор с `enumerable: true`.
+
+Вот так будет работать:
+
+    let user = { };
+
+    user = new Proxy(user, {
+      ownKeys(target) { // вызывается 1 раз для получения списка свойств
+        return ['a', 'b', 'c'];
+      },
+
+      getOwnPropertyDescriptor(target, prop) { // вызывается для каждого свойства
+        return {
+          enumerable: true,
+          configurable: true
+          /* ...другие флаги, возможно, "value: ..." */
+        };
+      }
+
+    });
+
+    alert( Object.keys(user) ); // a, b, c
+
+Ещё раз заметим, что получение дескриптора нужно перехватывать только если свойство отсутствует в самом объекте.
+
+### Защищённые свойства с ловушкой «deleteProperty» и другими
