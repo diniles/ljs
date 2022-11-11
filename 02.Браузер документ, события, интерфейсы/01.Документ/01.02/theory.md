@@ -32,7 +32,7 @@
 
 DOM – это представление HTML-документа в виде дерева тегов. Вот как оно выглядит:
 
-![Getting Started](./DOMStructure.jpg)
+![DomStructure](./DOMStructure.jpg)
 
 Каждый узел этого дерева – это объект.
 
