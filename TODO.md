@@ -32,3 +32,5 @@ work on these chapters:
 - 0107_06.js
 - 0107_07.js
 - 0107_08.js
+
+- 0108_01.js
